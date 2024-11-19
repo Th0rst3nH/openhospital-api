@@ -316,6 +316,20 @@
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
+			<build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>rsc</directory>
+                        <includes>
+                            <include>**/*.properties</include>
+                        </includes>
+                        <filtering>false</filtering>
+                    </resource>
+                </resources>
+            </build>
         </profile>
     </profiles>
 </project>
