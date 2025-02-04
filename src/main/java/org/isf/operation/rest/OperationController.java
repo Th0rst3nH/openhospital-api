@@ -109,6 +109,12 @@ public class OperationController {
 	public OperationDTO newOperation(@RequestBody OperationDTO operationDTO) throws OHServiceException {
 		String code = operationDTO.getCode();
 		LOGGER.info("Create operation {}.", code);
+		if (operationManager.isCodePresent(operationDTO.getCode())) {
+			throw new OHAPIException(new OHExceptionMessage(
+				"Another operation already exist with provided code."
+			));
+		}
+
 		if (operationManager.descriptionControl(operationDTO.getDescription(), operationDTO.getType().getCode())) {
 			throw new OHAPIException(new OHExceptionMessage(
 				"Another operation already created with provided description and types."
